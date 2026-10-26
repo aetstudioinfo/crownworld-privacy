@@ -222,6 +222,19 @@
     </div>
   </section>
 
+  <section id="deletion-en">
+    <div class="section-header"><div class="section-icon">🗑️</div><h2>How to Delete Your Data (Crown World by AET Studio)</h2></div>
+    <div class="section-body">
+      <p><strong>Steps:</strong></p>
+      <ul>
+        <li><strong>Game data on your device</strong> (progress, crowns, statistics, settings): open <em>Device Settings → Apps → Crown World → Storage → Clear data</em>, or uninstall the app. This deletes it immediately.</li>
+        <li><strong>Advertising data:</strong> reset or delete your Advertising ID in <em>Device Settings → Google → Ads</em>. In the EEA/UK you can also withdraw ad consent in the app: <em>Settings → About → Privacy choices</em>.</li>
+        <li><strong>Any other request:</strong> email <a class="contact-link" href="mailto:aetstudioinfo@gmail.com">aetstudioinfo@gmail.com</a> with the subject <em>"Crown World data deletion"</em>. We reply within 30 days.</li>
+      </ul>
+      <p><strong>What is deleted:</strong> all game progress and settings stored by the app. <strong>What may be kept:</strong> purchase records are kept by Google Play as required for payments and refunds; advertising data is kept by Google AdMob under Google's policy; a copy in your Android backup stays until you remove it from your Google account backups. We keep nothing on our own servers.</p>
+    </div>
+  </section>
+
   <section>
     <div class="section-header"><div class="section-icon icon-gdpr">🇪🇺</div><h2>GDPR — EEA &amp; UK Users</h2></div>
     <div class="section-body">
@@ -356,6 +369,19 @@
     </div>
   </section>
 
+  <section id="deletion-tr">
+    <div class="section-header"><div class="section-icon">🗑️</div><h2>Verilerinizi Silme (Crown World, AET Studio)</h2></div>
+    <div class="section-body">
+      <p><strong>Adımlar:</strong></p>
+      <ul>
+        <li><strong>Cihazdaki oyun verileri</strong> (ilerleme, Crown'lar, istatistikler, ayarlar): <em>Cihaz Ayarları → Uygulamalar → Crown World → Depolama → Verileri temizle</em> adımlarını izleyin ya da uygulamayı kaldırın. Veriler hemen silinir.</li>
+        <li><strong>Reklam verileri:</strong> reklam kimliğinizi <em>Cihaz Ayarları → Google → Reklamlar</em> bölümünden sıfırlayın veya silin. AEA/UK'de reklam rızanızı uygulamadan da geri alabilirsiniz: <em>Ayarlar → Hakkında → Gizlilik tercihleri</em>.</li>
+        <li><strong>Diğer talepler:</strong> <a class="contact-link" href="mailto:aetstudioinfo@gmail.com">aetstudioinfo@gmail.com</a> adresine <em>"Crown World veri silme"</em> konusuyla yazın. 30 gün içinde yanıt veririz.</li>
+      </ul>
+      <p><strong>Silinenler:</strong> uygulamanın sakladığı tüm oyun ilerlemesi ve ayarlar. <strong>Saklanabilecekler:</strong> satın alma kayıtları ödeme ve iade için Google Play'de tutulur; reklam verileri Google'ın politikasına göre Google AdMob'da tutulur; Android yedeğinizdeki kopya, Google hesabı yedeklerinizden silene kadar kalır. Kendi sunucularımızda hiçbir şey tutmayız.</p>
+    </div>
+  </section>
+
   <section>
     <div class="section-header"><div class="section-icon icon-kvkk">🇹🇷</div><h2>KVKK — Kişisel Verilerin Korunması</h2></div>
     <div class="section-body">
@@ -423,8 +449,11 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
   // Türkçe tarayıcıda Türkçe açılsın.
-  if ((navigator.language || '').toLowerCase().startsWith('tr')) {
-    showLang('tr', document.querySelectorAll('.lang-btn')[1]);
+  const tr = (navigator.language || '').toLowerCase().startsWith('tr');
+  if (tr) showLang('tr', document.querySelectorAll('.lang-btn')[1]);
+  // Play'deki veri silme bağlantısı (#deletion): görünen dildeki silme bölümüne gider.
+  if (location.hash === '#deletion') {
+    document.getElementById(tr ? 'deletion-tr' : 'deletion-en').scrollIntoView();
   }
 </script>
 </body>
