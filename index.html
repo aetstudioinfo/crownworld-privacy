@@ -1,466 +1,223 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Crown World – Privacy Policy / Gizlilik Politikası</title>
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --bg:        #F2F4F9;
-      --surface:   #FFFFFF;
-      --primary:   #3B6CF6;
-      --navy:      #1E2A4A;
-      --muted:     #68728F;
-      --light:     #E2E9FE;
-      --divider:   #DCE1EC;
-      --gold:      #FFC531;
-      --gdpr:      #1565C0;
-      --ccpa:      #2E7D32;
-      --kvkk:      #C62828;
-      --ump:       #E65100;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Libre Franklin', sans-serif; background: var(--bg); color: var(--navy); min-height: 100vh; }
-
-    .lang-bar {
-      position: sticky; top: 0; z-index: 100; background: var(--navy);
-      display: flex; justify-content: center; gap: 8px; padding: 10px 20px;
-      box-shadow: 0 2px 12px rgba(30,42,74,.25);
-    }
-    .lang-btn {
-      font-family: inherit; font-size: 13px; font-weight: 600; letter-spacing: .4px;
-      padding: 6px 22px; border: 2px solid rgba(255,255,255,.35); border-radius: 999px;
-      cursor: pointer; transition: all .2s; color: rgba(255,255,255,.8); background: transparent;
-    }
-    .lang-btn.active { background: #fff; color: var(--navy); border-color: #fff; }
-    .lang-btn:hover:not(.active) { border-color: rgba(255,255,255,.7); color: #fff; }
-
-    header {
-      background: linear-gradient(135deg, #2B55D6 0%, var(--primary) 55%, #7FA6FF 100%);
-      color: #fff; padding: 60px 24px 52px; text-align: center;
-    }
-    .app-icon {
-      width: 76px; height: 76px; background: var(--primary); border: 3px solid rgba(255,255,255,.5);
-      border-radius: 22px; margin: 0 auto 18px; display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 6px 18px rgba(30,42,74,.25);
-    }
-    header h1 { font-size: clamp(28px,5vw,40px); font-weight: 800; letter-spacing: -.3px; margin-bottom: 6px; }
-    header p.subtitle { font-size: 14px; opacity: .85; letter-spacing: .3px; }
-
-    .container { max-width: 780px; margin: 0 auto; padding: 0 20px 80px; }
-    .lang-section { display: none; }
-    .lang-section.visible { display: block; }
-
-    .meta-bar {
-      display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 32px 0 24px;
-      padding: 14px 20px; background: var(--surface); border-radius: 16px; border: 1px solid var(--divider);
-    }
-    .badge { font-size: 11px; font-weight: 700; letter-spacing: .6px; text-transform: uppercase; padding: 4px 12px; border-radius: 999px; color: #fff; }
-    .badge-app { background: var(--primary); }
-    .badge-ver { background: var(--muted); }
-    .meta-bar .date { margin-left: auto; font-size: 12px; color: var(--muted); }
-
-    section { background: var(--surface); border: 1px solid var(--divider); border-radius: 20px; margin-bottom: 16px; overflow: hidden; }
-    .section-header { display: flex; align-items: center; gap: 14px; padding: 18px 24px; border-bottom: 1px solid var(--divider); }
-    .section-icon { width: 36px; height: 36px; border-radius: 10px; background: var(--light); display: flex; align-items: center; justify-content: center; font-size: 17px; flex-shrink: 0; }
-    .icon-gdpr { background: rgba(21,101,192,.12); }
-    .icon-ccpa { background: rgba(46,125,50,.12); }
-    .icon-kvkk { background: rgba(198,40,40,.12); }
-    .icon-ump  { background: rgba(230,81,0,.12); }
-    .section-header h2 { font-size: 17px; font-weight: 700; color: var(--navy); }
-    .section-body { padding: 18px 24px; }
-    .section-body p, .section-body li { font-size: 14.5px; line-height: 1.7; color: var(--navy); margin-bottom: 10px; }
-    .section-body li { margin-bottom: 6px; }
-    .section-body ul { padding-left: 20px; margin-bottom: 10px; }
-    .section-body p:last-child, .section-body ul:last-child { margin-bottom: 0; }
-    .muted { color: var(--muted) !important; font-size: 13px !important; }
-
-    .reg-badge { display: inline-flex; font-size: 11px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; padding: 3px 10px; border-radius: 999px; color: #fff; margin-bottom: 12px; }
-    .reg-badge.gdpr { background: var(--gdpr); }
-    .reg-badge.ccpa { background: var(--ccpa); }
-    .reg-badge.kvkk { background: var(--kvkk); }
-    .reg-badge.ump  { background: var(--ump); }
-
-    .data-table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin-top: 4px; }
-    .data-table th { background: var(--light); color: var(--navy); font-weight: 700; text-align: left; padding: 10px 14px; font-size: 12px; letter-spacing: .3px; text-transform: uppercase; }
-    .data-table th:first-child { border-radius: 10px 0 0 0; }
-    .data-table th:last-child  { border-radius: 0 10px 0 0; }
-    .data-table td { padding: 10px 14px; border-bottom: 1px solid var(--divider); line-height: 1.5; vertical-align: top; }
-    .data-table tr:last-child td { border-bottom: none; }
-    .pill { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 9px; border-radius: 999px; background: var(--light); color: #1B3A9E; }
-
-    .highlight { background: rgba(59,108,246,.07); border-left: 3px solid var(--primary); border-radius: 0 12px 12px 0; padding: 14px 18px; margin: 12px 0; font-size: 14px; line-height: 1.65; }
-    .info-box { border-radius: 12px; padding: 14px 18px; margin: 12px 0; font-size: 14px; line-height: 1.65; }
-    .info-box.gdpr { background: rgba(21,101,192,.07); border-left: 3px solid var(--gdpr); }
-    .info-box.ccpa { background: rgba(46,125,50,.07);  border-left: 3px solid var(--ccpa); }
-    .info-box.kvkk { background: rgba(198,40,40,.07);  border-left: 3px solid var(--kvkk); }
-    .info-box.ump  { background: rgba(230,81,0,.07);   border-left: 3px solid var(--ump); }
-
-    a.contact-link { color: var(--primary); font-weight: 700; text-decoration: none; border-bottom: 1px dashed var(--primary); }
-    a.contact-link:hover { color: var(--navy); }
-
-    footer { text-align: center; font-size: 12px; color: var(--muted); padding: 32px 20px; border-top: 1px solid var(--divider); margin-top: 16px; }
-    footer strong { color: var(--primary); }
-
-    @media (max-width: 520px) {
-      .section-body, .section-header { padding-left: 16px; padding-right: 16px; }
-      .data-table th, .data-table td { padding: 8px 9px; font-size: 12px; }
-    }
-  </style>
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crown World – Privacy Policy / Gizlilik Politikası</title>
+<style>
+:root{--bg:#fafafc;--fg:#1d2030;--muted:#667;--line:#dde;--accent:#3b5bdb;--card:#fff;--soft:#eef1ff}
+@media (prefers-color-scheme:dark){:root{--bg:#14161f;--fg:#e8eaf3;--muted:#9aa0b8;--line:#2a2e40;--accent:#8fa8ff;--card:#1b1e2b;--soft:#222740}}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.65;color:var(--fg);background:var(--bg)}
+.bar{position:sticky;top:0;z-index:5;display:flex;justify-content:center;gap:8px;padding:10px 12px;background:var(--card);border-bottom:1px solid var(--line)}
+.bar button{font:inherit;font-weight:600;font-size:.9rem;padding:6px 20px;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--fg);cursor:pointer}
+.bar button[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:#fff}
+main{max-width:780px;margin:0 auto;padding:20px 16px 56px}
+h1{font-size:1.6rem;margin:.3em 0}
+h2{font-size:1.12rem;margin:1.9em 0 .4em}
+a{color:var(--accent)}
+.meta{color:var(--muted);font-size:.9rem}
+.box{background:var(--soft);border-left:4px solid var(--accent);padding:10px 14px;border-radius:6px;margin:14px 0}
+.wrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.93rem;background:var(--card)}
+th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+th{background:var(--soft)}
+.lang{display:none}.lang.on{display:block}
+footer{margin-top:3em;color:var(--muted);font-size:.85rem;text-align:center}
+</style>
+<noscript><style>.lang{display:block!important;margin-bottom:3em}.bar{display:none}</style></noscript>
 </head>
 <body>
+<nav class="bar" aria-label="Language">
+<button type="button" id="b-en" aria-pressed="true">English</button>
+<button type="button" id="b-tr" aria-pressed="false">Türkçe</button>
+</nav>
+<main>
 
-<div class="lang-bar">
-  <button class="lang-btn active" onclick="showLang('en',this)">🇬🇧 English</button>
-  <button class="lang-btn"        onclick="showLang('tr',this)">🇹🇷 Türkçe</button>
-</div>
+<!-- ============================== ENGLISH ============================== -->
+<section class="lang on" id="en" lang="en">
+<p class="meta">AET Studio · Last updated: 25 November 2026</p>
+<h1>Crown World Privacy Policy</h1>
+<p>Thank you for playing <strong>Crown World</strong> (com.aetstudio.crownworld), a collection of puzzle games developed by AET Studio. This policy explains what data the app uses, why, and what choices you have.</p>
 
-<header>
-  <div class="app-icon">
-    <!-- Uygulama simgesindeki taç -->
-    <svg width="44" height="44" viewBox="28 30 52 52" aria-hidden="true">
-      <path fill="#FFC531" d="M32,68 L32,40 L43,53 L54,33 L65,53 L76,40 L76,68 Z" />
-      <path fill="#FFC531" d="M32,72 L76,72 L76,78 L32,78 Z" />
-    </svg>
-  </div>
-  <h1>Crown World</h1>
-  <p class="subtitle">Privacy Policy / Gizlilik Politikası</p>
-</header>
+<div class="box"><strong>In short:</strong> Crown World has no accounts and no servers of our own. Your progress stays on your device. The only third parties are Google services: AdMob for ads, Google Play for purchases and, if you use it, Google Play Games.</div>
 
-<div class="container">
+<h2>Data we use</h2>
+<div class="wrap"><table>
+<tr><th>Data</th><th>Purpose</th><th>Legal basis (GDPR)</th><th>Where</th></tr>
+<tr><td>Game progress (levels, crowns, streaks, statistics)</td><td>Core gameplay</td><td>Contract performance</td><td>On device</td></tr>
+<tr><td>Settings (theme, language, reminders)</td><td>Your preferences</td><td>Legitimate interest</td><td>On device</td></tr>
+<tr><td>Advertising ID, device and ad interaction data, approximate location (from IP)</td><td>Showing and measuring ads</td><td>Consent (EEA/UK)</td><td>Google AdMob</td></tr>
+<tr><td>Purchase records</td><td>In-app purchases (e.g. Remove Ads, crown packs)</td><td>Contract performance</td><td>Google Play</td></tr>
+<tr><td>Google Play Games profile, scores and cloud save (optional)</td><td>Leaderboards, achievements, saved progress across devices</td><td>Consent (you choose to sign in)</td><td>Google Play Games</td></tr>
+<tr><td>Problem report (only if you tap Share)</td><td>Fixing a crash or freeze you report to us</td><td>Consent</td><td>Your device, then the app you choose</td></tr>
+</table></div>
+<p>We do not collect your name, email address, contacts, photos or precise location. We do not run analytics of our own and we do not sell your personal information.</p>
 
-<!-- ════════════ ENGLISH ════════════ -->
-<div class="lang-section visible" id="section-en">
+<h2>Advertising and consent (AdMob / UMP)</h2>
+<p>Crown World shows ads through Google AdMob (banners, ads between levels and optional rewarded ads). In the EEA, the UK and Switzerland, a consent form from Google's User Messaging Platform (UMP) is shown before personalised ads are used.</p>
+<ul>
+<li>If you consent, AdMob may use your Advertising ID to show personalised ads.</li>
+<li>If you decline, only non-personalised ads are shown.</li>
+<li>AdMob may share ad-related data (such as the Advertising ID and ad interactions) with its advertising partners under Google's policies. We do not receive this data and we do not sell your personal information.</li>
+<li>You can change your choice at any time in the app: <em>Settings → About → Privacy choices</em>.</li>
+<li>You can reset or delete your Advertising ID in <em>Device Settings → Google → Ads</em>.</li>
+<li>Rewarded ads are always optional: you choose to watch them for a hint or an extra try.</li>
+</ul>
+<p>Google's privacy policy: <a href="https://policies.google.com/privacy">policies.google.com/privacy</a> · How Google uses data from partner apps: <a href="https://policies.google.com/technologies/partner-sites">policies.google.com/technologies/partner-sites</a></p>
 
-  <div class="meta-bar">
-    <span class="badge badge-app">Crown World</span>
-    <span class="date">Last Updated: 25 November 2026</span>
-  </div>
+<h2>In-app purchases</h2>
+<p>Purchases are processed entirely by Google Play. We never see or store your payment details. We only receive a confirmation that a purchase was made so that we can unlock it in the app. Purchases such as Remove Ads are restored automatically when you reinstall the app with the same Google account, or via <em>Settings → About → Restore purchases</em>. Purchases and refunds are subject to <a href="https://support.google.com/googleplay/answer/2479637">Google Play's refund policy</a>.</p>
 
-  <section>
-    <div class="section-header"><div class="section-icon">👋</div><h2>Overview</h2></div>
-    <div class="section-body">
-      <p>Thank you for playing <strong>Crown World</strong>, a collection of puzzle games developed by AET Studio. This Privacy Policy explains what data the app uses, why, and what choices you have.</p>
-      <div class="highlight"><strong>In short:</strong> Crown World has no accounts and no servers of our own. Your progress stays on your device. The only third parties are Google services: AdMob for ads, Google Play for purchases and, if you use it, Google Play Games.</div>
-    </div>
-  </section>
+<h2>Google Play Games</h2>
+<p>If you choose to sign in with Google Play Games, the app uses your Play Games profile (player name and avatar) to show leaderboards and achievements, and saves a copy of your game progress and settings to Google's cloud save so you can continue on another device. Before an older cloud save replaces progress on your device, the app asks you. Without signing in, nothing is sent to Google Play Games and the whole app can be played. This is managed by Google; you can control your profile, visibility and cloud save in the Google Play Games app. See <a href="https://policies.google.com/privacy">policies.google.com/privacy</a>.</p>
 
-  <section>
-    <div class="section-header"><div class="section-icon">📦</div><h2>Data We Use</h2></div>
-    <div class="section-body">
-      <table class="data-table">
-        <thead><tr><th>Data</th><th>Purpose</th><th>Legal Basis (GDPR)</th><th>Where</th></tr></thead>
-        <tbody>
-          <tr><td>Game progress (levels, crowns, streaks, statistics)</td><td>Core gameplay</td><td>Contract performance</td><td><span class="pill">On device</span></td></tr>
-          <tr><td>Settings (theme, language, reminders)</td><td>Your preferences</td><td>Legitimate interest</td><td><span class="pill">On device</span></td></tr>
-          <tr><td>Advertising ID, device and ad interaction data, approximate location (from IP)</td><td>Showing and measuring ads</td><td>Consent (EEA/UK)</td><td><span class="pill">Google AdMob</span></td></tr>
-          <tr><td>Purchase records</td><td>In-app purchases (e.g. Remove Ads, crown packs)</td><td>Contract performance</td><td><span class="pill">Google Play</span></td></tr>
-          <tr><td>Google Play Games profile, scores and cloud save (optional)</td><td>Leaderboards, achievements, saved progress across devices</td><td>Consent (you choose to sign in)</td><td><span class="pill">Google Play Games</span></td></tr>
-          <tr><td>Problem report (only if you tap Share)</td><td>Fixing a crash or freeze you report to us</td><td>Consent</td><td><span class="pill">Your device, then the app you choose</span></td></tr>
-        </tbody>
-      </table>
-      <p class="muted" style="margin-top:14px;">We do not collect your name, email address, contacts, photos or precise location. We do not run analytics of our own and we do not sell your data.</p>
-    </div>
-  </section>
+<h2>Notifications and permissions</h2>
+<ul>
+<li><strong>Notifications (optional):</strong> only for the daily puzzle reminder, which you turn on in Settings. It is never sent on days you have already played.</li>
+<li><strong>Run at startup:</strong> only to re-schedule the reminder after your phone restarts.</li>
+<li><strong>Internet:</strong> to load ads, process purchases and, if you sign in, use Google Play Games.</li>
+<li><strong>Vibration:</strong> for haptic feedback; you can turn it off in Settings.</li>
+</ul>
+<p>Denying a permission only disables the related feature.</p>
+<p><strong>Problem reports and feedback:</strong> if the app crashes or freezes, a technical report (error log, Android version, device model) is saved on your device. It is shown to you the next time you open the app and is sent only if you tap <em>Share</em>, with an app you choose. <em>Settings → About → Send feedback</em> opens your email app; nothing is sent unless you send the email. After you have won several levels the app may ask you to rate it using Google Play's in-app review window; that window is provided by Google Play.</p>
 
-  <section>
-    <div class="section-header"><div class="section-icon icon-ump">📢</div><h2>Advertising &amp; Consent (AdMob / UMP)</h2></div>
-    <div class="section-body">
-      <div class="reg-badge ump">📢 AdMob · UMP</div>
-      <div class="info-box ump">Crown World shows ads through Google AdMob (banners, ads between levels and optional rewarded ads). In the EEA, the UK and Switzerland, a consent form from Google's User Messaging Platform (UMP) is shown before personalised ads are used.</div>
-      <ul>
-        <li>If you consent, AdMob may use your Advertising ID to show personalised ads.</li>
-        <li>If you decline, only non-personalised ads are shown.</li>
-        <li>AdMob may share ad-related data (such as the Advertising ID and ad interactions) with its advertising partners under Google's policies. We do not receive this data and we do not sell your personal information.</li>
-        <li>You can change your choice at any time in the app: <em>Settings → About → Privacy choices</em>.</li>
-        <li>You can reset or delete your Advertising ID in <em>Device Settings → Google → Ads</em>.</li>
-        <li>Rewarded ads are always optional: you choose to watch them for a hint or an extra try.</li>
-      </ul>
-      <p>Google's privacy policy: <a class="contact-link" href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a> · How Google uses data from partner apps: <a class="contact-link" href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">policies.google.com/technologies/partner-sites</a></p>
-    </div>
-  </section>
+<h2>Data retention</h2>
+<div class="wrap"><table>
+<tr><th>Data</th><th>Retention</th></tr>
+<tr><td>Progress and settings</td><td>Until you uninstall the app or clear its data. If Android backup is on, a copy may be kept in your Google account backup, managed by Google.</td></tr>
+<tr><td>Advertising data</td><td>Managed by Google AdMob</td></tr>
+<tr><td>Purchase records</td><td>Managed by Google Play</td></tr>
+<tr><td>Play Games profile, scores and cloud save</td><td>Managed by Google Play Games</td></tr>
+<tr><td>Data held by AET Studio</td><td>None</td></tr>
+</table></div>
 
-  <section>
-    <div class="section-header"><div class="section-icon">🛒</div><h2>In-App Purchases</h2></div>
-    <div class="section-body">
-      <p>Purchases are processed entirely by Google Play. We never see or store your payment details. We only receive a confirmation that a purchase was made so that we can unlock it in the app. Purchases such as Remove Ads are restored automatically when you reinstall the app with the same Google account, or via <em>Settings → About → Restore purchases</em>. Purchases and refunds are subject to <a class="contact-link" href="https://support.google.com/googleplay/answer/2479637" target="_blank" rel="noopener">Google Play's refund policy</a>.</p>
-    </div>
-  </section>
+<h2 id="deletion-en">How to delete your data</h2>
+<p>Since we hold no data on our own servers, there is no account to delete.</p>
+<ul>
+<li><strong>Game data on your device</strong> (progress, crowns, statistics, settings): open <em>Device Settings → Apps → Crown World → Storage → Clear data</em>, or uninstall the app. This deletes it immediately.</li>
+<li><strong>Advertising data:</strong> reset or delete your Advertising ID in <em>Device Settings → Google → Ads</em>. In the EEA/UK you can also withdraw ad consent in the app: <em>Settings → About → Privacy choices</em>.</li>
+<li><strong>Play Games data</strong> (cloud save, scores): delete it in the Google Play Games app settings or your Google account.</li>
+<li><strong>Any other request:</strong> email <a href="mailto:aetstudioinfo@gmail.com">aetstudioinfo@gmail.com</a> with the subject <em>"Crown World data deletion"</em>. We reply within 30 days.</li>
+</ul>
+<p><strong>What is deleted:</strong> all game progress and settings stored by the app. <strong>What may be kept:</strong> purchase records are kept by Google Play as required for payments and refunds; advertising data is kept by Google AdMob under Google's policy; a copy in your Android backup stays until you remove it from your Google account backups. We keep nothing on our own servers.</p>
 
-  <section>
-    <div class="section-header"><div class="section-icon">🏆</div><h2>Google Play Games</h2></div>
-    <div class="section-body">
-      <p>If you choose to sign in with Google Play Games, the app uses your Play Games profile (player name and avatar) to show leaderboards and achievements, and saves a copy of your game progress and settings to Google's cloud save so you can continue on another device. Before an older cloud save replaces progress on your device, the app asks you. Without signing in, nothing is sent to Google Play Games and the whole app can be played. This is managed by Google; you can control your profile, visibility and cloud save in the Google Play Games app. Google Play Games privacy: <a class="contact-link" href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></p>
-    </div>
-  </section>
+<h2>Your rights</h2>
+<p><strong>European Economic Area, United Kingdom and Switzerland (GDPR):</strong> you have the right of access, rectification, erasure, restriction, data portability and objection, and the right to withdraw consent at any time (ads: <em>Settings → About → Privacy choices</em>). Contact us at <a href="mailto:aetstudioinfo@gmail.com">aetstudioinfo@gmail.com</a>; we respond within 30 days. You may also complain to your local data protection authority.</p>
+<p><strong>Türkiye (KVKK, Law No. 6698):</strong> the data controller is AET Studio, Istanbul, Türkiye. Under Article 11 you may ask whether your data is processed, request information, learn the purpose and the third parties it is transferred to, request correction or deletion, object to results of automated processing, and claim compensation for damage. Requests are answered within 30 days. You may complain to the Personal Data Protection Authority (KVKK).</p>
+<p><strong>California (CCPA):</strong> we do not sell your personal information. You have the right to know what personal information is processed, the right to request deletion and the right not to be discriminated against for using these rights. Email us with the subject <em>"CCPA Request"</em>; we respond within 45 days.</p>
 
-  <section>
-    <div class="section-header"><div class="section-icon">🔔</div><h2>Notifications &amp; Permissions</h2></div>
-    <div class="section-body">
-      <ul>
-        <li><strong>Notifications (optional):</strong> only for the daily puzzle reminder, which you turn on in Settings. It is never sent on days you have already played.</li>
-        <li><strong>Run at startup:</strong> only to re-schedule the reminder after your phone restarts.</li>
-        <li><strong>Internet:</strong> to load ads, process purchases and, if you sign in, use Google Play Games.</li>
-        <li><strong>Vibration:</strong> for haptic feedback; you can turn it off in Settings.</li>
-      </ul>
-      <p>Denying a permission only disables the related feature.</p>
-      <p><strong>Problem reports and feedback:</strong> if the app crashes or freezes, a technical report (error log, Android version, device model) is saved on your device. It is shown to you the next time you open the app and is sent only if you tap <em>Share</em>, with an app you choose. <em>Settings → About → Send feedback</em> opens your email app; nothing is sent unless you send the email. After you have won several levels the app may ask you to rate it using Google Play's in-app review window; that window is provided by Google Play.</p>
-    </div>
-  </section>
+<h2>Children</h2>
+<p>Crown World is not directed at children under 13, and we do not knowingly collect personal data from them. If you believe a child has provided personal data through the app, contact <a href="mailto:aetstudioinfo@gmail.com">aetstudioinfo@gmail.com</a> and we will help remove it.</p>
 
-  <section>
-    <div class="section-header"><div class="section-icon">🗓️</div><h2>Data Retention &amp; Deletion</h2></div>
-    <div class="section-body">
-      <table class="data-table">
-        <thead><tr><th>Data</th><th>Retention</th></tr></thead>
-        <tbody>
-          <tr><td>Progress and settings</td><td>Until you uninstall the app or clear its data. If Android backup is on, a copy may be kept in your Google account backup, managed by Google.</td></tr>
-          <tr><td>Advertising data</td><td>Managed by Google AdMob</td></tr>
-          <tr><td>Purchase records</td><td>Managed by Google Play</td></tr>
-          <tr><td>Play Games profile and scores</td><td>Managed by Google Play Games</td></tr>
-        </tbody>
-      </table>
-      <p style="margin-top:12px;">Since we hold no data on our own servers, there is no account to delete. To remove everything from your device, uninstall the app or clear its data in <em>Device Settings → Apps → Crown World</em>. Questions: <a class="contact-link" href="mailto:aetstudioinfo@gmail.com">aetstudioinfo@gmail.com</a></p>
-    </div>
-  </section>
+<h2>Changes to this policy</h2>
+<p>When this policy changes, the updated version is published on this page with a new date.</p>
 
-  <section id="deletion-en">
-    <div class="section-header"><div class="section-icon">🗑️</div><h2>How to Delete Your Data (Crown World by AET Studio)</h2></div>
-    <div class="section-body">
-      <p><strong>Steps:</strong></p>
-      <ul>
-        <li><strong>Game data on your device</strong> (progress, crowns, statistics, settings): open <em>Device Settings → Apps → Crown World → Storage → Clear data</em>, or uninstall the app. This deletes it immediately.</li>
-        <li><strong>Advertising data:</strong> reset or delete your Advertising ID in <em>Device Settings → Google → Ads</em>. In the EEA/UK you can also withdraw ad consent in the app: <em>Settings → About → Privacy choices</em>.</li>
-        <li><strong>Any other request:</strong> email <a class="contact-link" href="mailto:aetstudioinfo@gmail.com">aetstudioinfo@gmail.com</a> with the subject <em>"Crown World data deletion"</em>. We reply within 30 days.</li>
-      </ul>
-      <p><strong>What is deleted:</strong> all game progress and settings stored by the app. <strong>What may be kept:</strong> purchase records are kept by Google Play as required for payments and refunds; advertising data is kept by Google AdMob under Google's policy; a copy in your Android backup stays until you remove it from your Google account backups. We keep nothing on our own servers.</p>
-    </div>
-  </section>
+<h2>Contact</h2>
+<p>AET Studio · Istanbul, Türkiye<br>Questions and requests: <a href="mailto:aetstudioinfo@gmail.com">aetstudioinfo@gmail.com</a></p>
+</section>
 
-  <section>
-    <div class="section-header"><div class="section-icon icon-gdpr">🇪🇺</div><h2>GDPR — EEA &amp; UK Users</h2></div>
-    <div class="section-body">
-      <div class="reg-badge gdpr">🇪🇺 GDPR · EU / EEA / UK</div>
-      <div class="info-box gdpr">If you are in the European Economic Area or the United Kingdom, the GDPR applies to the processing of your personal data.</div>
-      <p>You have the right of access, rectification, erasure, restriction, data portability and objection, and the right to withdraw consent at any time (for ads: <em>Settings → About → Privacy choices</em>). Contact us at <a class="contact-link" href="mailto:aetstudioinfo@gmail.com">aetstudioinfo@gmail.com</a>; we respond within 30 days. You may also complain to your local data protection authority.</p>
-    </div>
-  </section>
+<!-- ============================== TÜRKÇE ============================== -->
+<section class="lang" id="tr" lang="tr">
+<p class="meta">AET Studio · Son güncelleme: 25 Kasım 2026</p>
+<h1>Crown World Gizlilik Politikası</h1>
+<p>AET Studio tarafından geliştirilen bulmaca koleksiyonu <strong>Crown World</strong>'ü (com.aetstudio.crownworld) oynadığınız için teşekkür ederiz. Bu politika, uygulamanın hangi verileri neden kullandığını ve hangi seçeneklere sahip olduğunuzu açıklar.</p>
 
-  <section>
-    <div class="section-header"><div class="section-icon icon-ccpa">🇺🇸</div><h2>CCPA — California Residents</h2></div>
-    <div class="section-body">
-      <div class="reg-badge ccpa">🇺🇸 CCPA · California</div>
-      <p><strong>We do not sell your personal information.</strong> You have the right to know what personal information is processed, the right to request deletion and the right not to be discriminated against for using these rights. Email <a class="contact-link" href="mailto:aetstudioinfo@gmail.com">aetstudioinfo@gmail.com</a> with the subject <em>"CCPA Request"</em>; we respond within 45 days.</p>
-    </div>
-  </section>
+<div class="box"><strong>Kısaca:</strong> Crown World'de hesap yoktur ve kendi sunucumuz yoktur. İlerlemeniz cihazınızda kalır. Tek üçüncü taraflar Google hizmetleridir: reklam için AdMob, satın almalar için Google Play ve kullanırsanız Google Play Games.</div>
 
-  <section>
-    <div class="section-header"><div class="section-icon">🧒</div><h2>Children's Privacy</h2></div>
-    <div class="section-body">
-      <p>Crown World is not directed at children under 13, and we do not knowingly collect personal data from them. If you believe a child has provided personal data through the app, contact <a class="contact-link" href="mailto:aetstudioinfo@gmail.com">aetstudioinfo@gmail.com</a> and we will help remove it.</p>
-    </div>
-  </section>
+<h2>Kullanılan veriler</h2>
+<div class="wrap"><table>
+<tr><th>Veri</th><th>Amaç</th><th>Hukuki dayanak (GDPR)</th><th>Nerede</th></tr>
+<tr><td>Oyun ilerlemesi (bölümler, Crown'lar, seriler, istatistikler)</td><td>Temel oyun işlevi</td><td>Sözleşme ifası</td><td>Cihazda</td></tr>
+<tr><td>Ayarlar (tema, dil, hatırlatma)</td><td>Tercihleriniz</td><td>Meşru menfaat</td><td>Cihazda</td></tr>
+<tr><td>Reklam kimliği, cihaz ve reklam etkileşim verileri, yaklaşık konum (IP'den)</td><td>Reklam gösterimi ve ölçümü</td><td>Rıza (AEA/UK)</td><td>Google AdMob</td></tr>
+<tr><td>Satın alma kayıtları</td><td>Uygulama içi satın almalar (ör. Reklamları Kaldır, Crown paketleri)</td><td>Sözleşme ifası</td><td>Google Play</td></tr>
+<tr><td>Google Play Games profili, skorlar ve bulut kaydı (isteğe bağlı)</td><td>Sıralamalar, başarımlar, cihazlar arası kayıtlı ilerleme</td><td>Rıza (girişi siz seçersiniz)</td><td>Google Play Games</td></tr>
+<tr><td>Sorun raporu (yalnızca Paylaş'a dokunursanız)</td><td>Bize bildirdiğiniz çökme veya donmayı düzeltmek</td><td>Rıza</td><td>Cihazınız, sonra seçtiğiniz uygulama</td></tr>
+</table></div>
+<p>Adınızı, e-posta adresinizi, kişilerinizi, fotoğraflarınızı veya kesin konumunuzu toplamayız. Kendi analiz aracımızı kullanmayız ve kişisel verilerinizi satmayız.</p>
 
-  <section>
-    <div class="section-header"><div class="section-icon">📋</div><h2>Changes to This Policy</h2></div>
-    <div class="section-body">
-      <p>We may update this policy from time to time. Changes are shown by the "Last Updated" date above. Continued use of the app after changes are posted means you accept the updated policy.</p>
-    </div>
-  </section>
+<h2>Reklamlar ve rıza (AdMob / UMP)</h2>
+<p>Crown World, Google AdMob aracılığıyla reklam gösterir (banner, bölüm arası reklamlar ve isteğe bağlı ödüllü reklamlar). AEA, Birleşik Krallık ve İsviçre'de kişiselleştirilmiş reklam kullanılmadan önce Google'ın Kullanıcı Mesajlaşma Platformu (UMP) ile bir rıza formu gösterilir.</p>
+<ul>
+<li>Rıza verirseniz AdMob, reklam kimliğinizi kişiselleştirilmiş reklam için kullanabilir.</li>
+<li>Rıza vermezseniz yalnızca kişiselleştirilmemiş reklamlar gösterilir.</li>
+<li>AdMob, reklamla ilgili verileri (reklam kimliği ve reklam etkileşimleri gibi) Google'ın politikaları çerçevesinde reklam ortaklarıyla paylaşabilir. Bu verileri biz almayız ve kişisel verilerinizi satmayız.</li>
+<li>Seçiminizi uygulamada istediğiniz zaman değiştirebilirsiniz: <em>Ayarlar → Hakkında → Gizlilik tercihleri</em>.</li>
+<li>Reklam kimliğinizi <em>Cihaz Ayarları → Google → Reklamlar</em> bölümünden sıfırlayabilir veya silebilirsiniz.</li>
+<li>Ödüllü reklamlar her zaman isteğe bağlıdır: ipucu ya da ekstra deneme için izlemeyi siz seçersiniz.</li>
+</ul>
+<p>Google gizlilik politikası: <a href="https://policies.google.com/privacy">policies.google.com/privacy</a> · Google'ın iş ortağı uygulamalardan gelen verileri nasıl kullandığı: <a href="https://policies.google.com/technologies/partner-sites">policies.google.com/technologies/partner-sites</a></p>
 
-  <section>
-    <div class="section-header"><div class="section-icon">✉️</div><h2>Contact Us</h2></div>
-    <div class="section-body">
-      <p><a class="contact-link" href="mailto:aetstudioinfo@gmail.com">aetstudioinfo@gmail.com</a></p>
-      <p class="muted">AET Studio · Istanbul, Turkey</p>
-    </div>
-  </section>
+<h2>Uygulama içi satın almalar</h2>
+<p>Satın almalar tamamen Google Play tarafından işlenir. Ödeme bilgilerinizi hiçbir zaman görmez ve saklamayız; yalnızca satın almanın gerçekleştiğine dair onayı alırız ki uygulamada açabilelim. Reklamları Kaldır gibi satın almalar, uygulamayı aynı Google hesabıyla yeniden yüklediğinizde kendiliğinden ya da <em>Ayarlar → Hakkında → Satın alımları geri yükle</em> ile geri gelir. Satın almalar ve iadeler <a href="https://support.google.com/googleplay/answer/2479637">Google Play'in iade politikasına</a> tabidir.</p>
 
-</div><!-- /section-en -->
+<h2>Google Play Games</h2>
+<p>Google Play Games ile giriş yapmayı seçerseniz uygulama, sıralamaları ve başarımları göstermek için Play Games profilinizi (oyuncu adı ve avatar) kullanır; ayrıca başka cihazda devam edebilmeniz için oyun ilerlemenizin ve ayarlarınızın bir kopyasını Google'ın bulut kaydına yazar. Eski bir bulut kaydı cihazınızdaki ilerlemenin yerine geçmeden önce uygulama size sorar. Giriş yapmazsanız Google Play Games'e hiçbir şey gönderilmez ve uygulamanın tamamı oynanabilir. Bu Google tarafından yönetilir; profilinizi, görünürlüğünüzü ve bulut kaydınızı Google Play Games uygulamasından yönetebilirsiniz. Gizlilik: <a href="https://policies.google.com/privacy">policies.google.com/privacy</a></p>
 
+<h2>Bildirimler ve izinler</h2>
+<ul>
+<li><strong>Bildirimler (isteğe bağlı):</strong> yalnızca Ayarlar'dan açtığınız günlük bulmaca hatırlatması için. O gün oynadıysanız gönderilmez.</li>
+<li><strong>Açılışta çalışma:</strong> yalnızca telefon yeniden başladıktan sonra hatırlatmayı yeniden kurmak için.</li>
+<li><strong>İnternet:</strong> reklamları yüklemek, satın almaları işlemek ve giriş yaparsanız Google Play Games'i kullanmak için.</li>
+<li><strong>Titreşim:</strong> dokunsal geri bildirim için; Ayarlar'dan kapatabilirsiniz.</li>
+</ul>
+<p>Bir izni vermemeniz yalnızca ilgili özelliği kapatır.</p>
+<p><strong>Sorun raporları ve geri bildirim:</strong> uygulama çökerse veya donarsa teknik bir rapor (hata kaydı, Android sürümü, cihaz modeli) cihazınıza kaydedilir. Rapor bir sonraki açılışta size gösterilir ve yalnızca siz <em>Paylaş</em>'a dokunursanız, seçtiğiniz uygulamayla gönderilir. <em>Ayarlar → Hakkında → Geri bildirim gönder</em> e-posta uygulamanızı açar; e-postayı siz göndermedikçe hiçbir şey gitmez. Birkaç bölüm kazandıktan sonra uygulama sizden Google Play'in uygulama içi puan penceresiyle puan vermenizi isteyebilir; bu pencere Google Play tarafından sağlanır.</p>
 
-<!-- ════════════ TÜRKÇE ════════════ -->
-<div class="lang-section" id="section-tr">
+<h2>Saklama süreleri</h2>
+<div class="wrap"><table>
+<tr><th>Veri</th><th>Saklama</th></tr>
+<tr><td>İlerleme ve ayarlar</td><td>Uygulamayı kaldırana veya verilerini temizleyene kadar. Android yedeklemesi açıksa bir kopyası Google hesabı yedeğinizde Google tarafından tutulabilir.</td></tr>
+<tr><td>Reklam verileri</td><td>Google AdMob tarafından yönetilir</td></tr>
+<tr><td>Satın alma kayıtları</td><td>Google Play tarafından yönetilir</td></tr>
+<tr><td>Play Games profili, skorlar ve bulut kaydı</td><td>Google Play Games tarafından yönetilir</td></tr>
+<tr><td>AET Studio'nun elinde tuttuğu veri</td><td>Yok</td></tr>
+</table></div>
 
-  <div class="meta-bar">
-    <span class="badge badge-app">Crown World</span>
-    <span class="date">Son Güncelleme: 25 Kasım 2026</span>
-  </div>
+<h2 id="deletion-tr">Verilerinizi silme</h2>
+<p>Kendi sunucularımızda veri tutmadığımız için silinecek bir hesap yoktur.</p>
+<ul>
+<li><strong>Cihazdaki oyun verileri</strong> (ilerleme, Crown'lar, istatistikler, ayarlar): <em>Cihaz Ayarları → Uygulamalar → Crown World → Depolama → Verileri temizle</em> adımlarını izleyin ya da uygulamayı kaldırın. Veriler hemen silinir.</li>
+<li><strong>Reklam verileri:</strong> reklam kimliğinizi <em>Cihaz Ayarları → Google → Reklamlar</em> bölümünden sıfırlayın veya silin. AEA/UK'de reklam rızanızı uygulamadan da geri alabilirsiniz: <em>Ayarlar → Hakkında → Gizlilik tercihleri</em>.</li>
+<li><strong>Play Games verileri</strong> (bulut kaydı, skorlar): Google Play Games uygulamasının ayarlarından veya Google hesabınızdan silin.</li>
+<li><strong>Diğer talepler:</strong> <a href="mailto:aetstudioinfo@gmail.com">aetstudioinfo@gmail.com</a> adresine <em>"Crown World veri silme"</em> konusuyla yazın. 30 gün içinde yanıt veririz.</li>
+</ul>
+<p><strong>Silinenler:</strong> uygulamanın sakladığı tüm oyun ilerlemesi ve ayarlar. <strong>Saklanabilecekler:</strong> satın alma kayıtları ödeme ve iade için Google Play'de tutulur; reklam verileri Google'ın politikasına göre Google AdMob'da tutulur; Android yedeğinizdeki kopya, Google hesabı yedeklerinizden silene kadar kalır. Kendi sunucularımızda hiçbir şey tutmayız.</p>
 
-  <section>
-    <div class="section-header"><div class="section-icon">👋</div><h2>Genel Bakış</h2></div>
-    <div class="section-body">
-      <p>AET Studio tarafından geliştirilen bulmaca koleksiyonu <strong>Crown World</strong>'ü oynadığınız için teşekkür ederiz. Bu gizlilik politikası, uygulamanın hangi verileri neden kullandığını ve hangi seçeneklere sahip olduğunuzu açıklar.</p>
-      <div class="highlight"><strong>Kısaca:</strong> Crown World'de hesap yoktur ve kendi sunucumuz yoktur. İlerlemeniz cihazınızda kalır. Tek üçüncü taraflar Google hizmetleridir: reklam için AdMob, satın almalar için Google Play ve kullanırsanız Google Play Games.</div>
-    </div>
-  </section>
+<h2>Haklarınız</h2>
+<p><strong>Avrupa Ekonomik Alanı, Birleşik Krallık ve İsviçre (GDPR):</strong> erişim, düzeltme, silme, kısıtlama, taşınabilirlik ve itiraz haklarına, ayrıca rızanızı istediğiniz zaman geri alma hakkına sahipsiniz (reklamlar için: <em>Ayarlar → Hakkında → Gizlilik tercihleri</em>). Talepler için <a href="mailto:aetstudioinfo@gmail.com">aetstudioinfo@gmail.com</a>; 30 gün içinde yanıt veririz. Yerel veri koruma kurumuna şikâyet hakkınız da vardır.</p>
+<p><strong>Türkiye (KVKK, 6698 sayılı Kanun):</strong> veri sorumlusu AET Studio, İstanbul, Türkiye'dir. Madde 11 kapsamında verilerinizin işlenip işlenmediğini öğrenme, bilgi talep etme, işleme amacını ve aktarıldığı üçüncü kişileri öğrenme, düzeltme veya silme isteme, otomatik işlemlerin sonucuna itiraz etme ve zararın giderilmesini talep etme haklarına sahipsiniz. Talepler 30 gün içinde yanıtlanır. Kişisel Verileri Koruma Kurumu'na şikâyet hakkınız saklıdır.</p>
+<p><strong>Kaliforniya (CCPA):</strong> kişisel verilerinizi satmıyoruz. Hangi verilerin işlendiğini öğrenme, silinmesini isteme ve bu hakları kullandığınız için ayrımcılığa uğramama haklarına sahipsiniz. <em>"CCPA Talebi"</em> konusuyla yazın; 45 gün içinde yanıt veririz.</p>
 
-  <section>
-    <div class="section-header"><div class="section-icon">📦</div><h2>Kullanılan Veriler</h2></div>
-    <div class="section-body">
-      <table class="data-table">
-        <thead><tr><th>Veri</th><th>Amaç</th><th>Hukuki Dayanak (GDPR)</th><th>Nerede</th></tr></thead>
-        <tbody>
-          <tr><td>Oyun ilerlemesi (bölümler, Crown'lar, seriler, istatistikler)</td><td>Temel oyun işlevi</td><td>Sözleşme ifası</td><td><span class="pill">Cihazda</span></td></tr>
-          <tr><td>Ayarlar (tema, dil, hatırlatma)</td><td>Tercihleriniz</td><td>Meşru menfaat</td><td><span class="pill">Cihazda</span></td></tr>
-          <tr><td>Reklam kimliği, cihaz ve reklam etkileşim verileri, yaklaşık konum (IP'den)</td><td>Reklam gösterimi ve ölçümü</td><td>Rıza (AEA/UK)</td><td><span class="pill">Google AdMob</span></td></tr>
-          <tr><td>Satın alma kayıtları</td><td>Uygulama içi satın almalar (ör. Reklamları Kaldır, Crown paketleri)</td><td>Sözleşme ifası</td><td><span class="pill">Google Play</span></td></tr>
-          <tr><td>Google Play Games profili, skorlar ve bulut kaydı (isteğe bağlı)</td><td>Sıralamalar, başarımlar, cihazlar arası kayıtlı ilerleme</td><td>Rıza (girişi siz seçersiniz)</td><td><span class="pill">Google Play Games</span></td></tr>
-          <tr><td>Sorun raporu (yalnızca Paylaş'a dokunursanız)</td><td>Bize bildirdiğiniz çökme veya donmayı düzeltmek</td><td>Rıza</td><td><span class="pill">Cihazınız, sonra seçtiğiniz uygulama</span></td></tr>
-        </tbody>
-      </table>
-      <p class="muted" style="margin-top:14px;">Adınızı, e-posta adresinizi, kişilerinizi, fotoğraflarınızı veya kesin konumunuzu toplamayız. Kendi analiz aracımızı kullanmayız ve verilerinizi satmayız.</p>
-    </div>
-  </section>
+<h2>Çocukların gizliliği</h2>
+<p>Crown World 13 yaşın altındaki çocuklara yönelik değildir ve bu yaş grubundan bilerek kişisel veri toplamayız. Bir çocuğun uygulama aracılığıyla kişisel veri sağladığını düşünüyorsanız <a href="mailto:aetstudioinfo@gmail.com">aetstudioinfo@gmail.com</a> adresine yazın, silinmesine yardımcı olalım.</p>
 
-  <section>
-    <div class="section-header"><div class="section-icon icon-ump">📢</div><h2>Reklamlar ve Rıza (AdMob / UMP)</h2></div>
-    <div class="section-body">
-      <div class="reg-badge ump">📢 AdMob · UMP</div>
-      <div class="info-box ump">Crown World, Google AdMob aracılığıyla reklam gösterir (banner, bölüm arası reklamlar ve isteğe bağlı ödüllü reklamlar). AEA, Birleşik Krallık ve İsviçre'de kişiselleştirilmiş reklam kullanılmadan önce Google'ın Kullanıcı Mesajlaşma Platformu (UMP) ile bir rıza formu gösterilir.</div>
-      <ul>
-        <li>Rıza verirseniz AdMob, reklam kimliğinizi kişiselleştirilmiş reklam için kullanabilir.</li>
-        <li>Rıza vermezseniz yalnızca kişiselleştirilmemiş reklamlar gösterilir.</li>
-        <li>AdMob, reklamla ilgili verileri (reklam kimliği ve reklam etkileşimleri gibi) Google'ın politikaları çerçevesinde reklam ortaklarıyla paylaşabilir. Bu verileri biz almayız ve kişisel verilerinizi satmayız.</li>
-        <li>Seçiminizi uygulamada istediğiniz zaman değiştirebilirsiniz: <em>Ayarlar → Hakkında → Gizlilik tercihleri</em>.</li>
-        <li>Reklam kimliğinizi <em>Cihaz Ayarları → Google → Reklamlar</em> bölümünden sıfırlayabilir veya silebilirsiniz.</li>
-        <li>Ödüllü reklamlar her zaman isteğe bağlıdır: ipucu ya da ekstra deneme için izlemeyi siz seçersiniz.</li>
-      </ul>
-      <p>Google gizlilik politikası: <a class="contact-link" href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a> · Google'ın iş ortağı uygulamalardan gelen verileri nasıl kullandığı: <a class="contact-link" href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">policies.google.com/technologies/partner-sites</a></p>
-    </div>
-  </section>
+<h2>Politika değişiklikleri</h2>
+<p>Bu politika değiştiğinde güncel hali bu sayfada yayınlanır ve tarih güncellenir.</p>
 
-  <section>
-    <div class="section-header"><div class="section-icon">🛒</div><h2>Uygulama İçi Satın Almalar</h2></div>
-    <div class="section-body">
-      <p>Satın almalar tamamen Google Play tarafından işlenir. Ödeme bilgilerinizi hiçbir zaman görmez ve saklamayız; yalnızca satın almanın gerçekleştiğine dair onayı alırız ki uygulamada açabilelim. Reklamları Kaldır gibi satın almalar, uygulamayı aynı Google hesabıyla yeniden yüklediğinizde kendiliğinden ya da <em>Ayarlar → Hakkında → Satın alımları geri yükle</em> ile geri gelir. Satın almalar ve iadeler <a class="contact-link" href="https://support.google.com/googleplay/answer/2479637" target="_blank" rel="noopener">Google Play'in iade politikasına</a> tabidir.</p>
-    </div>
-  </section>
+<h2>İletişim</h2>
+<p>AET Studio · İstanbul, Türkiye<br>Sorular ve talepler: <a href="mailto:aetstudioinfo@gmail.com">aetstudioinfo@gmail.com</a></p>
+</section>
 
-  <section>
-    <div class="section-header"><div class="section-icon">🏆</div><h2>Google Play Games</h2></div>
-    <div class="section-body">
-      <p>Google Play Games ile giriş yapmayı seçerseniz uygulama, sıralamaları ve başarımları göstermek için Play Games profilinizi (oyuncu adı ve avatar) kullanır; ayrıca başka cihazda devam edebilmeniz için oyun ilerlemenizin ve ayarlarınızın bir kopyasını Google'ın bulut kaydına yazar. Eski bir bulut kaydı cihazınızdaki ilerlemenin yerine geçmeden önce uygulama size sorar. Giriş yapmazsanız Google Play Games'e hiçbir şey gönderilmez ve uygulamanın tamamı oynanabilir. Bu Google tarafından yönetilir; profilinizi, görünürlüğünüzü ve bulut kaydınızı Google Play Games uygulamasından yönetebilirsiniz. Gizlilik: <a class="contact-link" href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></p>
-    </div>
-  </section>
-
-  <section>
-    <div class="section-header"><div class="section-icon">🔔</div><h2>Bildirimler ve İzinler</h2></div>
-    <div class="section-body">
-      <ul>
-        <li><strong>Bildirimler (isteğe bağlı):</strong> yalnızca Ayarlar'dan açtığınız günlük bulmaca hatırlatması için. O gün oynadıysanız gönderilmez.</li>
-        <li><strong>Açılışta çalışma:</strong> yalnızca telefon yeniden başladıktan sonra hatırlatmayı yeniden kurmak için.</li>
-        <li><strong>İnternet:</strong> reklamları yüklemek, satın almaları işlemek ve giriş yaparsanız Google Play Games'i kullanmak için.</li>
-        <li><strong>Titreşim:</strong> dokunsal geri bildirim için; Ayarlar'dan kapatabilirsiniz.</li>
-      </ul>
-      <p>Bir izni vermemeniz yalnızca ilgili özelliği kapatır.</p>
-      <p><strong>Sorun raporları ve geri bildirim:</strong> uygulama çökerse veya donarsa teknik bir rapor (hata kaydı, Android sürümü, cihaz modeli) cihazınıza kaydedilir. Rapor bir sonraki açılışta size gösterilir ve yalnızca siz <em>Paylaş</em>'a dokunursanız, seçtiğiniz uygulamayla gönderilir. <em>Ayarlar → Hakkında → Geri bildirim gönder</em> e-posta uygulamanızı açar; e-postayı siz göndermedikçe hiçbir şey gitmez. Birkaç bölüm kazandıktan sonra uygulama sizden Google Play'in uygulama içi puan penceresiyle puan vermenizi isteyebilir; bu pencere Google Play tarafından sağlanır.</p>
-    </div>
-  </section>
-
-  <section>
-    <div class="section-header"><div class="section-icon">🗓️</div><h2>Saklama ve Silme</h2></div>
-    <div class="section-body">
-      <table class="data-table">
-        <thead><tr><th>Veri</th><th>Saklama</th></tr></thead>
-        <tbody>
-          <tr><td>İlerleme ve ayarlar</td><td>Uygulamayı kaldırana veya verilerini temizleyene kadar. Android yedeklemesi açıksa bir kopyası Google hesabı yedeğinizde Google tarafından tutulabilir.</td></tr>
-          <tr><td>Reklam verileri</td><td>Google AdMob tarafından yönetilir</td></tr>
-          <tr><td>Satın alma kayıtları</td><td>Google Play tarafından yönetilir</td></tr>
-          <tr><td>Play Games profili ve skorlar</td><td>Google Play Games tarafından yönetilir</td></tr>
-        </tbody>
-      </table>
-      <p style="margin-top:12px;">Kendi sunucularımızda veri tutmadığımız için silinecek bir hesap yoktur. Cihazınızdaki her şeyi silmek için uygulamayı kaldırın ya da <em>Cihaz Ayarları → Uygulamalar → Crown World</em> bölümünden verilerini temizleyin. Sorularınız için: <a class="contact-link" href="mailto:aetstudioinfo@gmail.com">aetstudioinfo@gmail.com</a></p>
-    </div>
-  </section>
-
-  <section id="deletion-tr">
-    <div class="section-header"><div class="section-icon">🗑️</div><h2>Verilerinizi Silme (Crown World, AET Studio)</h2></div>
-    <div class="section-body">
-      <p><strong>Adımlar:</strong></p>
-      <ul>
-        <li><strong>Cihazdaki oyun verileri</strong> (ilerleme, Crown'lar, istatistikler, ayarlar): <em>Cihaz Ayarları → Uygulamalar → Crown World → Depolama → Verileri temizle</em> adımlarını izleyin ya da uygulamayı kaldırın. Veriler hemen silinir.</li>
-        <li><strong>Reklam verileri:</strong> reklam kimliğinizi <em>Cihaz Ayarları → Google → Reklamlar</em> bölümünden sıfırlayın veya silin. AEA/UK'de reklam rızanızı uygulamadan da geri alabilirsiniz: <em>Ayarlar → Hakkında → Gizlilik tercihleri</em>.</li>
-        <li><strong>Diğer talepler:</strong> <a class="contact-link" href="mailto:aetstudioinfo@gmail.com">aetstudioinfo@gmail.com</a> adresine <em>"Crown World veri silme"</em> konusuyla yazın. 30 gün içinde yanıt veririz.</li>
-      </ul>
-      <p><strong>Silinenler:</strong> uygulamanın sakladığı tüm oyun ilerlemesi ve ayarlar. <strong>Saklanabilecekler:</strong> satın alma kayıtları ödeme ve iade için Google Play'de tutulur; reklam verileri Google'ın politikasına göre Google AdMob'da tutulur; Android yedeğinizdeki kopya, Google hesabı yedeklerinizden silene kadar kalır. Kendi sunucularımızda hiçbir şey tutmayız.</p>
-    </div>
-  </section>
-
-  <section>
-    <div class="section-header"><div class="section-icon icon-kvkk">🇹🇷</div><h2>KVKK — Kişisel Verilerin Korunması</h2></div>
-    <div class="section-body">
-      <div class="reg-badge kvkk">🇹🇷 KVKK · Türkiye</div>
-      <div class="info-box kvkk">Türkiye'de ikamet ediyorsanız 6698 sayılı Kişisel Verilerin Korunması Kanunu kapsamında haklara sahipsiniz.</div>
-      <ul>
-        <li><strong>Veri sorumlusu:</strong> AET Studio, İstanbul, Türkiye · <a class="contact-link" href="mailto:aetstudioinfo@gmail.com">aetstudioinfo@gmail.com</a></li>
-      </ul>
-      <p>Madde 11 kapsamında verilerinizin işlenip işlenmediğini öğrenme, bilgi talep etme, işleme amacını ve aktarıldığı üçüncü kişileri öğrenme, düzeltme ve silme isteme, otomatik işlemlere itiraz etme ve zararın giderilmesini talep etme haklarına sahipsiniz. Talepleriniz en geç 30 gün içinde sonuçlandırılır. Kişisel Verileri Koruma Kurumu'na şikâyet hakkınız saklıdır.</p>
-    </div>
-  </section>
-
-  <section>
-    <div class="section-header"><div class="section-icon icon-gdpr">🇪🇺</div><h2>GDPR — AEA ve Birleşik Krallık</h2></div>
-    <div class="section-body">
-      <div class="reg-badge gdpr">🇪🇺 GDPR · AB / AEA / UK</div>
-      <p>Erişim, düzeltme, silme, kısıtlama, taşınabilirlik ve itiraz haklarına, ayrıca rızanızı istediğiniz zaman geri alma hakkına sahipsiniz (reklamlar için: <em>Ayarlar → Hakkında → Gizlilik tercihleri</em>). Talepler için <a class="contact-link" href="mailto:aetstudioinfo@gmail.com">aetstudioinfo@gmail.com</a>; 30 gün içinde yanıt veririz.</p>
-    </div>
-  </section>
-
-  <section>
-    <div class="section-header"><div class="section-icon icon-ccpa">🇺🇸</div><h2>CCPA — Kaliforniya</h2></div>
-    <div class="section-body">
-      <div class="reg-badge ccpa">🇺🇸 CCPA · Kaliforniya</div>
-      <p><strong>Kişisel verilerinizi satmıyoruz.</strong> Hangi verilerin işlendiğini öğrenme, silinmesini isteme ve bu hakları kullandığınız için ayrımcılığa uğramama haklarına sahipsiniz. <a class="contact-link" href="mailto:aetstudioinfo@gmail.com">aetstudioinfo@gmail.com</a> adresine <em>"CCPA Talebi"</em> konusuyla yazın; 45 gün içinde yanıt veririz.</p>
-    </div>
-  </section>
-
-  <section>
-    <div class="section-header"><div class="section-icon">🧒</div><h2>Çocukların Gizliliği</h2></div>
-    <div class="section-body">
-      <p>Crown World 13 yaşın altındaki çocuklara yönelik değildir ve bu yaş grubundan bilerek kişisel veri toplamayız. Bir çocuğun uygulama aracılığıyla kişisel veri sağladığını düşünüyorsanız <a class="contact-link" href="mailto:aetstudioinfo@gmail.com">aetstudioinfo@gmail.com</a> adresine yazın, silinmesine yardımcı olalım.</p>
-    </div>
-  </section>
-
-  <section>
-    <div class="section-header"><div class="section-icon">📋</div><h2>Politika Değişiklikleri</h2></div>
-    <div class="section-body">
-      <p>Bu politikayı zaman zaman güncelleyebiliriz. Değişiklikler üstteki "Son Güncelleme" tarihiyle belirtilir. Değişikliklerden sonra uygulamayı kullanmaya devam etmeniz güncel politikayı kabul ettiğiniz anlamına gelir.</p>
-    </div>
-  </section>
-
-  <section>
-    <div class="section-header"><div class="section-icon">✉️</div><h2>İletişim</h2></div>
-    <div class="section-body">
-      <p><a class="contact-link" href="mailto:aetstudioinfo@gmail.com">aetstudioinfo@gmail.com</a></p>
-      <p class="muted">AET Studio · İstanbul, Türkiye</p>
-    </div>
-  </section>
-
-</div><!-- /section-tr -->
-
-</div><!-- /container -->
-
-<footer>
-  <strong>Crown World</strong> &copy; 2026 AET Studio &nbsp;·&nbsp; All rights reserved / Tüm hakları saklıdır
-</footer>
-
+<footer>© 2026 AET Studio</footer>
+</main>
 <script>
-  function showLang(lang, btn) {
-    document.querySelectorAll('.lang-section').forEach(el => el.classList.remove('visible'));
-    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('section-' + lang).classList.add('visible');
-    btn.classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+(function(){
+  function show(l){
+    document.getElementById('en').classList.toggle('on',l==='en');
+    document.getElementById('tr').classList.toggle('on',l==='tr');
+    document.getElementById('b-en').setAttribute('aria-pressed',l==='en');
+    document.getElementById('b-tr').setAttribute('aria-pressed',l==='tr');
+    document.documentElement.lang=l;
   }
-  // Türkçe tarayıcıda Türkçe açılsın.
-  const tr = (navigator.language || '').toLowerCase().startsWith('tr');
-  if (tr) showLang('tr', document.querySelectorAll('.lang-btn')[1]);
+  var h=(location.hash||'').replace('#','');
+  var tr=(navigator.language||'').toLowerCase().indexOf('tr')===0;
+  var l=(h==='tr'||h==='en')?h:(tr?'tr':'en');
+  show(l);
   // Play'deki veri silme bağlantısı (#deletion): görünen dildeki silme bölümüne gider.
-  if (location.hash === '#deletion') {
-    document.getElementById(tr ? 'deletion-tr' : 'deletion-en').scrollIntoView();
-  }
+  if(h==='deletion'){var d=document.getElementById('deletion-'+l); if(d) d.scrollIntoView();}
+  document.getElementById('b-en').onclick=function(){show('en');window.scrollTo(0,0);};
+  document.getElementById('b-tr').onclick=function(){show('tr');window.scrollTo(0,0);};
+})();
 </script>
-</body>
-</html>
+</body></html>
